@@ -2,9 +2,9 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['url' => '/added']) !!}
 
-<h2>新規ユーザー登録</h2>
+<h2>新規ユーザー登録！</h2>
 
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}

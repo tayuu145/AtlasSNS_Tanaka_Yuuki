@@ -18,7 +18,7 @@
 
 //Auth::routes();
 
-
+// k
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login');
 Route::post('/login', 'Auth\LoginController@login');
