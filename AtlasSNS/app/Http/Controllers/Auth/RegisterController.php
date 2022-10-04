@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Auth;
 
 use App\User;
@@ -46,6 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    // バリテーション
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -53,7 +55,7 @@ class RegisterController extends Controller
             'mail' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4|confirmed',
         ]);
-        return $validator;
+        // return $validator;
     }
 
     /**
@@ -79,24 +81,25 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-            $validator = $this->validator($data);
-
-            if ($validator->fails()) {
+            $errors = $this->validator($data);
+            // バリデーションよびだし
+            if ($errors->fails()) {
             return redirect('/register')
             ->withInput()
-            ->withErrors($validator);
+            ->withErrors($errors);
             }
 
             $this->create($data);
             return redirect('added');
-
-            session_start();
-            $_SESSION["UserName"]=$data["username"];
+            // 登録者保存
+            // session_start();
+            // $_SESSION["UserName"]=$data["username"];
         }
         return view('auth.register');
     }
 
     public function added(){
         return view('auth.added');
+
     }
 }

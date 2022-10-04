@@ -30,11 +30,14 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+Route::get('/top','PostsController@index')->middleware('auth');
 
-Route::get('/profile','UsersController@profile');
+Route::get('/profile','UsersController@profile')->middleware('auth');
+// Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search')->middleware('auth');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','PostsController@index')->middleware('auth');
+Route::get('/follower-list','PostsController@index')->middleware('auth');
+
+// 第一引数の該当URLになると第二引数が起動する。そこにアクセス確認制限をつける場合->middleware('auth');
