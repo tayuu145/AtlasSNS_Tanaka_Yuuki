@@ -4,7 +4,7 @@
 <h2>編集画面</h2>
 <div class="container small">
   <h1>内容を編集</h1>
-  <form action="{{ route('post.update', ['id'=>$id->id]) }}" method="POST">
+  <form action="{{ route('post.update', ['id'=>$post->post]) }}" method="POST">
   @csrf
     <fieldset>
       <div class="form-group">
