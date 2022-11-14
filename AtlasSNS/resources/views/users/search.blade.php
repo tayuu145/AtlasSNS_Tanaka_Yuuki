@@ -1,34 +1,25 @@
 @extends('layouts.login')
 
 @section('content')
-
-<h1>検索</h1>
-
-<form action="{{url('/books')}}" method="GET">
-    <p><input type="text" name="keyword" value="{{$keyword}}"></p>
-    <p><input type="number" name="stock" value="{{$stock}}">以上</p>
-    <p><input type="submit" value="検索"></p>
-</form>
-
-@if($books->count())
-
-<table border="1">
-    <tr>
-        <th>title</th>
-        <th>author</th>
-        <th>stock</th>
-    </tr>
-    @foreach ($books as $book)
-    <tr>
-        <td>{{ $book->title }}</td>
-        <td>{{ $book->author }}</td>
-        <td>{{ $book->stock }}</td>
-    </tr>
+<div>
+  <form action="{{ route('posts.searching') }}" method="GET">
+    @csrf
+    <input type="text" name="keyword" value="@if (isset( $keyword ))  @endif" class="form-control" placeholder="名前を入力してください">
+    <input type="submit" value="検索">
+  </form>
+  @if(!empty($users))
+  <tbody>
+    @foreach($users as $user)
+      <tr>
+          <td>{{ $user->id }}</td>
+          <td>{{ $user->username }}</td>
+          <td>{{ $user->mail }}</td>
+          <td>{{ $user->created_at->format('Y/m/d') }}</td>
+          <td>{{ $user->updated_at->format('Y/m/d') }}</td>
+      </tr>
     @endforeach
-</table>
-
-@else
-<p>見つかりませんでした。</p>
-@endif
+  </tbody>
+  @endif
+</div>
 
 @endsection

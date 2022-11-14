@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -10,24 +12,30 @@ class UsersController extends Controller
     public function profile(){
         return view('users.profile');
     }
-    public function search(Request $request){
+    public function search(){
         return view('users.search');
-         $keyword = $request->input('keyword');
-        $stock = $request->input('stock');
 
-        $query = Book::query();
+    }
 
-        if (!empty($keyword)) {
-            $query->where('title', 'LIKE', "%{$keyword}%")
-                ->orWhere('author', 'LIKE', "%{$keyword}%");
+    public function searching(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        if(!empty($keyword)) {
+            $_keyword = str_replace('　', ' ', $keyword);
+            $_keyword = preg_replace('/\s(?=\s)/', '', $keyword);
+            $_keyword = trim($keyword);
+
+            $query = User::query();
+
+            $query->where('username', 'LIKE', '%'.$keyword.'%');
+            $users = $query;
+
+        }else {
+            $users = User::paginate(10);
         }
+            $users = $query->get();
 
-        if (!empty($stock)) {
-            $query->where('stock', '>=', $stock);
-        }
-
-        $books = $query->get();
-
-        return view('book.index', compact('books', 'keyword', 'stock'));
+        return view('users.search', compact('users','keyword'));
     }
 }

@@ -1,22 +1,199 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    background: #186AC9;
 }
 
 /* main content */
-#row{
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
     flex: 0 0 80%;
 }
-#side-bar{
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+.menu-btn {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background-color: #fff;
+    outline: initial;
+
+
+}
+
+.inn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+
+
+}
+
+
+.menu-btn.is-open {
+
+    top: 60%;
+    transform: translate(-50%, -60%) rotate(-45deg);
+
+}
+
+.menu {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    background-color: #fff;
+    opacity: 0;
+    transition: .3s ease-in-out;
+    pointer-events: none;
+    transform: translateY(-30px);
+
+
+}
+
+.menu.is-open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+p {
+    color: pink;
+}
+
+.toukou {
+    display: block;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* koko */
+.syncer-acdn-parent {
+    width: 250px;
+    margin: 1.5em 0 0;
+    padding: 12px 18px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 子の[ul] */
+.syncer-acdn-child {
+    display: none;
+}
+
+/* 余白設定 */
+.syncer-acdn-child,
+.syncer-acdn-parent li,
+.syncer-acdn-parent li p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 親と子の[li] */
+.syncer-acdn-parent li {
+    list-style: none;
+}
+
+
+/* 親の[a] */
+.syncer-acdn-parent li p a {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.syncer-acdn-parent li p a:after,
+.syncer-acdn-parent li p a:hover:after {
+    color: #333;
+    background: rgba(0, 0, 255, 0.1);
+}
+
+.syncer-acdn-parent li p a:after {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    content: "開閉";
+    font-size: .85em;
+    margin-top: -12.5px;
+    height: 17px;
+    line-height: 17px;
+    padding: 4px 8px;
+}
+
+
+/* 親の[a]と子の[li] */
+.syncer-acdn-parent li p a,
+.syncer-acdn-child li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+/* 親と子の[a] */
+.syncer-acdn-parent li a {
+    display: block;
+    padding: 8px 0;
+    font-weight: 700;
+    text-decoration: none;
+    color: #333;
+}
+
+.syncer-acdn-parent li a:hover {
+    cursor: pointer;
+    color: #f00;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/* 子の[a] */
+.syncer-acdn-child li a:before {
+    content: "∟";
+    padding-right: 5px;
+}
+
+
+/* リセットCSS maru2*/
+* {
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* アコーディオンメニュー全体のサイズ・位置 */
+.ac {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* クリック領域 */
+.ac-parent {
+    height: 50px;
+    border-bottom: 1px solid #fff;
+    background-color: #f97148;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+/* クリックしたら表示される領域 */
+.ac-child {
+    display: none;
+    padding: 2em 1em;
+    background-color: #ffccbc;
+    text-align: center;
 }

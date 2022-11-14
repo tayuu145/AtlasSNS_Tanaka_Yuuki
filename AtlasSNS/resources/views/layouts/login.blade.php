@@ -18,22 +18,28 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+   <script src="{{ asset('/js/script.js') }}"></script>
 </head>
 <body>
     <header>
         <div id="head">
             <h1><a href="/top"><img src="images/logo.png"></a></h1>
             <div id="">
-                <div id="nav-open" class="nav-open">
+                <div>
                     <p>{{Auth::user()->username}}さん<img src="images/arrow.png"></p>
-                    <nav>
-                        <ul>
-                            <li><a href="/top">ホーム</a></li>
-                            <li><a href="/profile">プロフィール</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
-                            <li><a href="/search">検索</a></li>
-                        </ul>
-                    </nav>
+
+                    <ul>
+                        <li><p><a class="syncer-acdn" data-target="syncer-acdn-01">メニュー</a></p>
+                            <ul id="syncer-acdn-01">
+                                <li><a href="/top">ホーム</a></li>
+                                <li><a href="/profile">プロフィール</a></li>
+                                <li><a href="/logout">ログアウト</a></li>
+                                <li><a href="/search">検索</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
     </header>
     <div id="row">
@@ -47,19 +53,19 @@
                     <p>フォロー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                     <p>フォロワー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="/resources/assets/js/script.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="/resources/assets/js/script.js"></script> -->
 </body>
 </html>

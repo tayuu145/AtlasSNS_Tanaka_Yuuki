@@ -5,14 +5,15 @@
 @if ($errors->any())
 	    <div class="alert alert-danger">
 	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
+																						<!-- ↓送られたerror名 -->
+	            @foreach ($errors->all() as $validator)
+	                <li>{{ $validator }}</li>
 	            @endforeach
 	        </ul>
 	    </div>
 	@endif
 
-{!! Form::open(['url' => '/added']) !!}
+{!! Form::open(['url' => '/register']) !!}
 
 <h2>新規ユーザー登録！</h2>
 

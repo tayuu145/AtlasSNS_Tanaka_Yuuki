@@ -47,15 +47,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     // バリテーション
     protected function validator(array $data)
     {
+                              // ↓(検証する配列値(名前),検証ルール)
         return Validator::make($data, [
             'username' => 'required|string|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
+            'password' => 'required|string|between:1,10|alpha_num',
+            'password-confirm' => 'required|'
         ]);
-        // return $validator;
+        return $validator;
     }
 
     /**
@@ -80,20 +83,28 @@ class RegisterController extends Controller
 
     public function register(Request $request){
         if($request->isMethod('post')){
+            // ddd($request->username);
+
             $data = $request->input();
-            $errors = $this->validator($data);
+            $validator = $this->Validator($data);
+
             // バリデーションよびだし
-            if ($errors->fails()) {
+            if ($validator->fails()) {
             return redirect('/register')
             ->withInput()
-            ->withErrors($errors);
+            // ()内でerror送るよ
+            ->withErrors($validator);
             }
 
+            // createメソッドが実行
             $this->create($data);
+            // セッションでサーバに保存
+            session(['UserName' => $data['username']]);
+
             return redirect('added');
-            // 登録者保存
-            // session_start();
-            // $_SESSION["UserName"]=$data["username"];
+            // ↑でaddedにとんでるため以降は無視される①まで
+
+            // ①まで
         }
         return view('auth.register');
     }
