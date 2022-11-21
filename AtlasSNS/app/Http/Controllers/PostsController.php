@@ -34,7 +34,7 @@ class PostsController extends Controller
         $posts->user_id = $request->user_id;
         $posts->post = $request->post;
         $posts->save();
-        return redirect('/post');
+        return redirect('/top');
     }
 
     // DBからpostのデータを取得し、withの中に渡したい名前を以下の形式のように同じ名前でならべる。
