@@ -12,7 +12,12 @@ class PostsController extends Controller
 {
     //
     public function index(){
-        return view('posts.index');
+        $posts = Post::get();
+
+        return view('posts.index')->with([
+            'posts'=> $posts
+        ]);
+
     }
     public function followlist(){
         return view('follows.followList');
@@ -26,26 +31,26 @@ class PostsController extends Controller
         return view('posts/create');
     }
 
-    // 投稿内容登録処理
+    // 投稿内容登録処理 wakaranai
     public function store(Request $request)
     {
         $posts = new Post;
         // $posts->id = $request->id;
-        $posts->user_id = $request->user_id;
+        $posts->username = $request->username;
         $posts->post = $request->post;
         $posts->save();
         return redirect('/top');
     }
 
-    // DBからpostのデータを取得し、withの中に渡したい名前を以下の形式のように同じ名前でならべる。
-        public function list()
-    {
-        $posts = Post::get();
+    // // DBからpostのデータを取得し、withの中に渡したい名前を以下の形式のように同じ名前でならべる。
+    //     public function list()
+    // {
+    //     $posts = Post::get();
 
-        return view('posts.create')->with([
-            'posts'=> $posts
-        ]);
-    }
+    //     return view('posts.create')->with([
+    //         'posts'=> $posts
+    //     ]);
+    // }
 
     /**
      * 編集画面の表示
