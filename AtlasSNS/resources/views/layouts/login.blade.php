@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <!--IEブラウザ対策-->
@@ -20,8 +21,9 @@
     <!--OGPタグ/twitterカード-->
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-   <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 </head>
+
 <body>
     <header>
         <div id="head">
@@ -31,7 +33,8 @@
                     <p>{{Auth::user()->username}}さん<img src="images/arrow.png"></p>
 
                     <ul>
-                        <li><p><a class="syncer-acdn" data-target="syncer-acdn-01">メニュー</a></p>
+                        <li>
+                            <p><a class="syncer-acdn" data-target="syncer-acdn-01">メニュー</a></p>
                             <ul id="syncer-acdn-01">
                                 <li><a href="/top">ホーム</a></li>
                                 <li><a href="/profile">プロフィール</a></li>
@@ -51,12 +54,12 @@
                 <p>{{Auth::user()->username}}さんの</p>
                 <div>
                     <p>フォロー数</p>
-                    <p>〇〇名</p>
+                    <p>{{ Auth::user()->follows()->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                     <p>フォロワー数</p>
-                    <p>〇〇名</p>
+                    <p>{{ Auth::user()->followers()->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
@@ -68,4 +71,5 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="/resources/assets/js/script.js"></script> -->
 </body>
+
 </html>

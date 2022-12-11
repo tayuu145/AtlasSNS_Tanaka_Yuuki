@@ -11,18 +11,20 @@ use Validator;
 class PostsController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $posts = Post::get();
 
         return view('posts.index')->with([
-            'posts'=> $posts
+            'posts' => $posts
         ]);
-
     }
-    public function followlist(){
+    public function followlist()
+    {
         return view('follows.followList');
     }
-    public function followerlist(){
+    public function followerlist()
+    {
         return view('follows.followerList');
     }
 
@@ -31,13 +33,16 @@ class PostsController extends Controller
         return view('posts/create');
     }
 
-    // 投稿内容登録処理 wakaranai
+    // 投稿内容登録処理 <wakaranai> </wakaranai>
     public function store(Request $request)
     {
+        // postsテーブルの情報を変数に格納
         $posts = new Post;
         // $posts->id = $request->id;
+        // $posts→カラム名＝リクエストしたpostをいれる
         $posts->username = $request->username;
         $posts->post = $request->post;
+        // 覚える全体
         $posts->save();
         return redirect('/top');
     }
@@ -58,15 +63,24 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $posts = Post::get();
 
-        return view('posts.edit', compact('post'));
+        return view('posts.index', compact('post', 'posts'));
     }
     // 編集更新処理
     public function update(Request $request, $id)
     {
-        $posts = post::find($id);
-        $updatepost = $this->posts->updateBook($request, $posts);
+        $post = post::find($id);
+        $post->update($request->only(['post']));
 
-        return redirect()->route('/list');
+        return redirect('/top');
+    }
+    // 投稿削除処理
+    public function delete($id)
+    {
+        //   このIDがあるかpostテーブルから取得し。変数に格納
+        $item = Post::findOrFail($id);
+        $item->delete();
+        return redirect('/top');
     }
 }
