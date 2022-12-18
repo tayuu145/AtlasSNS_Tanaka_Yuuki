@@ -33,6 +33,8 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::get('/top', 'PostsController@index')->middleware('auth');
 
 Route::get('/profile', 'UsersController@profile')->middleware('auth');
+// プロフィール編集処理
+Route::get('/profil_edit', 'UsersController@profiledit');
 // Route::get('/profile','UsersController@profile');
 Route::get('/logout', 'Auth\LoginController@logout')->middleware('auth');
 

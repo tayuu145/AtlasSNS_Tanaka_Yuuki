@@ -14,11 +14,11 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::get();
+        $user = User::get();
 
-        return view('posts.index')->with([
-            'posts' => $posts
-        ]);
+        return view('posts.index', compact('posts', 'user'));
     }
+
     public function followlist()
     {
         return view('follows.followList');
@@ -40,7 +40,7 @@ class PostsController extends Controller
         $posts = new Post;
         // $posts->id = $request->id;
         // $posts→カラム名＝リクエストしたpostをいれる
-        $posts->username = $request->username;
+        $posts->user_id = $request->user_id;
         $posts->post = $request->post;
         // 覚える全体
         $posts->save();
@@ -68,11 +68,14 @@ class PostsController extends Controller
         return view('posts.index', compact('post', 'posts'));
     }
     // 編集更新処理
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $post = post::find($id);
-        $post->update($request->only(['post']));
-
+        // 1つ目の処理        ↓nameが入る
+        $id = $request->input('update-id');
+        $up_post = $request->input('update-text');
+        // 2つ目の処理　　引数左カラムに右変数に更新(↓uodateによって)
+        Post::where('id', $id)->update(['post' => $up_post]);
+        // 3つ目の処理
         return redirect('/top');
     }
     // 投稿削除処理

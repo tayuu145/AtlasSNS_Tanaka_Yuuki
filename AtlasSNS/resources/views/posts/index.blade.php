@@ -10,7 +10,7 @@
     @csrf
     <div>
       <!-- かくして、ログインユーザー名おくるよ -->
-      <input type="hidden" name="username" value="{{Auth::user()->username}}" />
+      <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
     </div>
     <div>
       <textarea name="post" placeholder="内容の入力"></textarea>
@@ -56,7 +56,7 @@
                 <!-- {/* 　　↓ここで飛ばしたいリンクに　　nameや書いてないところをかく */} -->
                 <form action="{{ route('update', ['id' => $post->id]) }}" method="POST">
                   <textarea name="update-text" class="modal_post"></textarea>
-                  <input type="hidden" name="update-post" class="modal_id" value="update-text">
+                  <input type="hidden" name="update-id" class="modal_id" value="">
                   <input type="submit" value="更新">
                   {{ csrf_field() }}
                 </form>
