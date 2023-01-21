@@ -13,7 +13,7 @@ class PostsController extends Controller
     //
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();;
         $user = User::get();
 
         return view('posts.index', compact('posts', 'user'));
@@ -21,11 +21,22 @@ class PostsController extends Controller
 
     public function followlist()
     {
-        return view('follows.followList');
+        $following_id = Auth::user()->follows()->pluck('followed_id');
+
+        // フォローしているユーザーのidを元に投稿内容を取得
+        $posts = Post::with('user')->whereIn('id', $following_id)->get();
+
+        return view('follows.followList', compact('posts'));
     }
+
     public function followerlist()
     {
-        return view('follows.followerList');
+        $followerd_id = Auth::user()->follows()->pluck('following_id');
+
+        // フォローしているユーザーのidを元に投稿内容を取得
+        $posts = Post::with('user')->whereIn('id', $followerd_id)->get();
+
+        return view('follows.followerList', compact('posts'));
     }
 
     public function create()

@@ -32,9 +32,10 @@
       <tbody>
         @foreach ($posts as $post)
         <tr>
+
           <!-- 投稿ID -->
           <td class="table-text">
-            <div>{{ $post->username }}</div>
+            <div><a href="{{ $post->user_id }}">{{ $post->user_id }}</a> </div>
           </td>
           <!-- 投稿詳細 -->
           <td class="table-text">
@@ -46,7 +47,7 @@
             <div class="content">
               <!-- 投稿の編集ボタン -->
               <!-- 　　　　　　　　　　{/* ↓押したときにリンクに飛ばしたくない編集できてないから */} -->
-              <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}">編集</a>
+              <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" width="30" height="30"></a>
             </div>
 
             <!-- < !--モーダルの中身 -->

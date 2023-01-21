@@ -27,10 +27,10 @@
 <body>
     <header>
         <div id="head">
-            <h1><a href="/top"><img src="images/logo.png"></a></h1>
+            <h1><a href="/top"><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div>
-                    <p>{{Auth::user()->username}}さん<img src="images/arrow.png"></p>
+                    <p>{{Auth::user()->username}}さん<img src="images/icon1.png" width="25" height="25"></p>
 
                     <ul>
                         <li>
