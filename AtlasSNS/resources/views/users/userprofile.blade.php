@@ -8,31 +8,75 @@
         <div class="card-header">ユーザ編集</div>
         <div class="card-body">
           <!-- 重要な箇所ここから -->
-          <form action="/profil_edit" method="get">
-            @csrf
-            <p>ID: {{Auth::user()->id}}</p>
-            <input type="hidden" name="id" value="{{Auth::user()->id}}" />
-            <p>user name</p>
-            <input type="text" name="name" value="{{Auth::user()->username}}" />
-            <p>mail adress</p>
-            <input type="text" name="mail" value="{{Auth::user()->mail}}" />
-            <p>password</p>
-            <input type="password" name="password" value="{{Auth::user()->password}}" />
-            <p>password comfirm</p>
-            <input type="password" name="password-comfirm" value="" />
-            <p>bio</p>
-            <input type="text" name="bio" value="{{Auth::user()->bio}}" />
-            <p>icon</p>
-            <input type="file" name="icon" value="{{Auth::user()->images}}" />
 
-            <br />
-            <input type="submit" value="更新" />
-          </form>
-          <!-- 重要な箇所ここまで -->
+          @csrf
+          <div class="userprofile">
+            <p><img src="{{ asset($users->images) }}" class="icon"></p>
+            <div class="userprofile-name">
+              <p class="p-magi30">name:　　　 {{$users->username}}</p>
+              <p class="p-magi30">　bio: 　　{{$users->bio}}</p>
+            </div>
+            @if (auth()->user()->isFollowed($users->id))
+            @endif
+            <div class="d-flex justify-content-end flex-grow-1">
+              @if (Auth::user()->isFollowing($users->id))
+              <form action="{{ route('unfollow', ['id' => $users->id]) }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+
+                <button type="submit" class="btn btn-danger">フォロー解除</button>
+              </form>
+              @else
+              <form action="{{ route('follow', ['id' => $users->id]) }}" method="POST">
+                {{ csrf_field() }}
+
+                <button type="submit" class="btn btn-primary">フォローする</button>
+              </form>
+              @endif
+            </div>
+          </div>
+
+
+          <table class="table table-striped task-table">
+            <!-- テーブルヘッダ -->
+            <thead>
+              <th>つぶやき一覧</th>
+              <th> </th>
+            </thead>
+            <!-- テーブル本体 -->
+            <tbody>
+              @foreach ($posts as $post)
+              <tr>
+
+                <!-- 投稿ID -->
+                <td class="table-text">
+                  <div><a href="">{{ $post->user_id }}</a> </div>
+                </td>
+                <!-- 投稿詳細 -->
+                <td class="table-text">
+                  <div>{{ $post->post }}</div>
+                </td>
+                <td>
+                  <div>
+                    <p> </p>
+                  </div>
+                <td>
+
+              </tr>
+              @endforeach
+
         </div>
+        </td>
+
+        </tbody>
+        </table>
+        <br />
+        <input type="submit" value="更新" />
+        <!-- 重要な箇所ここまで -->
       </div>
     </div>
   </div>
+</div>
 </div>
 
 @endsection

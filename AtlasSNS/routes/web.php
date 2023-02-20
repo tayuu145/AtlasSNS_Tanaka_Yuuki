@@ -34,7 +34,7 @@ Route::get('/top', 'PostsController@index')->middleware('auth');
 
 Route::get('/profile', 'UsersController@profile')->middleware('auth');
 // プロフィール編集処理
-Route::get('/profil_edit', 'UsersController@profiledit');
+Route::post('/profil_edit', 'UsersController@profiledit');
 // 他ユーザのプロフィール表示
 Route::get('/userprofile', 'UsersController@userprofile')->middleware('auth');
 // Route::get('/profile','UsersController@profile');
@@ -48,7 +48,7 @@ Route::get('/searching', 'UsersController@searching')->name('posts.searching');
 Route::get('/follow-list', 'PostsController@followlist')->middleware('auth');
 Route::get('/follower-list', 'PostsController@followerlist')->middleware('auth');
 
-Route::get('/{{ $post->user_id }}', 'UsersController@userprofile')->middleware('auth');
+Route::get('/users/{id}/userprofile', 'UsersController@userprofile')->name('userprofile');
 
 Route::post('/newpost', 'PostsController@store')->name('posts.store');
 

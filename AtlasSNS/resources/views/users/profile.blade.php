@@ -17,28 +17,40 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">ユーザ編集</div>
+        <div class="card-header"></div>
         <div class="card-body">
           <!-- 重要な箇所ここから -->
-          <form action="/profil_edit" method="get">
+          <form action="/profil_edit" method="POST" enctype="multipart/form-data">
             @csrf
-            <p>ID: {{Auth::user()->id}}</p>
+            <img src="{{ asset(Auth::user()->images) }}" class="icon-profile">
             <input type="hidden" name="id" value="{{Auth::user()->id}}" />
-            <p>user name</p>
-            <input type="text" name="name" value="{{Auth::user()->username}}" />
-            <p>mail adress</p>
-            <input type="text" name="mail" value="{{Auth::user()->mail}}" />
-            <p>password</p>
-            <input type="password" name="password" value="{{Auth::user()->password}}" />
-            <p>password comfirm</p>
-            <input type="password" name="password-comfirm" value="" />
-            <p>bio</p>
-            <input type="text" name="bio" value="{{Auth::user()->bio}}" />
-            <p>icon</p>
-            <input type="file" name="icon" value="{{Auth::user()->images}}" />
+            <div class="profile">
+              <p>user name　　</p>
+              <input type="text" class="profile-box" name="name" value="{{Auth::user()->username}}" />
+            </div>
+            <div class="profile">
+              <p>mail adress　　</p>
+              <input type="text" class="profile-box" name="mail" value="{{Auth::user()->mail}}" />
+            </div>
+            <div class="profile">
+              <p>password　　</p>
+              <input type="password" class="profile-box" name="password" value="" />
+            </div>
+            <div class="profile">
+              <p>password comfirm　　</p>
+              <input type="password" class="profile-box" name="password-comfirm" value="" />
+            </div>
+            <div class="profile">
+              <p>bio　　</p>
+              <input type="text" class="profile-box" name="bio" value="{{Auth::user()->bio}}" />
+            </div>
+            <div class="profile">
+              <p>icon　　</p>
+              <input type="file" class="profile-box" name="icon" value="{{Auth::user()->images}}" />
+            </div>
 
             <br />
-            <input type="submit" value="更新" />
+            <input type="submit" class="submit-profile" value="更新" />
           </form>
           <!-- 重要な箇所ここまで -->
         </div>

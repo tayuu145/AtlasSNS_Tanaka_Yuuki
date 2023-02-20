@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\User;
+use App\Post;
+use Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -29,9 +31,12 @@ class UsersController extends Controller
     public function profiledit(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'password' => 'required|string|between:1,10|alpha_num',
-            'password-comfirm' => 'required|'
+            'name' => 'required|string|between:2,12',
+            'mail' => 'required|string|email|between:5,40|unique:users',
+            'password' => 'required|string|between:8,20|alpha_num',
+            'password-comfirm' => 'required|',
+            'bio' => 'max:150',
+            'icon' => 'image'
         ]);
 
         if ($validator->fails()) {
@@ -44,18 +49,17 @@ class UsersController extends Controller
         $mail = $request->input('mail');
         $password = $request->input('password');
         $bio = $request->input('bio');
-        $icon = $request->file('icon');
+        // $icon = $request->file('icon');
 
+        // パブリックフォルダに画像を保存とDBにファイルパスを保存
+        // file('icon')はformのfileタイプの名前を参照
         $dir = 'images';
-        $request->file('icon')->store('public/' . $dir);
+        $file_name = $request->file('icon')->getClientOriginalName();
+        // 非公開のパブリック側に画像保存するよシンボリックリンクしている非公開ところに
+        $request->file('icon')->storeAs('public/' . $dir, $file_name);
+        // DBには表向きのアクセスできるパスを保存
+        $icon = 'storage/' . $dir . '/' . $file_name;
 
-        // $update = [
-        //     'username' => $username,
-        //     'mail' => $mail,
-        //     'password' => $password,
-        //     'bio' => $bio,
-        //     'images' => $icon,
-        // ];
 
         // 2つ目の処理　　引数左カラムに右変数に更新(↓uodateによって)
         User::where('id', $id)->update([
@@ -66,12 +70,15 @@ class UsersController extends Controller
             'bio' => $bio,
             'images' => $icon,
         ]);
+
         return redirect('/top');
     }
 
     public function search()
     {
-        return view('users.search');
+
+        $users = User::get();
+        return view('users.search', compact('users'));
     }
 
     public function searching(Request $request)
@@ -87,16 +94,19 @@ class UsersController extends Controller
 
             $query->where('username', 'LIKE', '%' . $search . '%');
             $users = $query;
+            $users = $query->get();
         } else {
-            $users = User::paginate(10);
+            $users = User::get();
         }
-        $users = $query->get();
+
 
         return view('users.search', compact('users', 'search'));
     }
 
-    public function userprofile()
+    public function userprofile($id)
     {
-        return view('users.userprofile');
+        $users = User::where('id', $id)->first();
+        $posts = Post::where('user_id', $id)->get();
+        return view('users.userprofile', compact('users', 'posts'));
     }
 }

@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Follow;
 use Illuminate\Http\Request;
 use App\User;
+use APP\Post;
 
 class FollowsController extends Controller
 {
     //
     public function followList()
     {
-        return view('follows.followList');
+        // $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();;
+        $users = User::get();
+
+        return view('follows.followList', compact('users'));
     }
     public function followerList()
     {

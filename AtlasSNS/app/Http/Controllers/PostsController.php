@@ -13,10 +13,10 @@ class PostsController extends Controller
     //
     public function index()
     {
-        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();;
-        $user = User::get();
+        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        $users = User::get();
 
-        return view('posts.index', compact('posts', 'user'));
+        return view('posts.index', compact('posts', 'users'));
     }
 
     public function followlist()
@@ -24,19 +24,24 @@ class PostsController extends Controller
         $following_id = Auth::user()->follows()->pluck('followed_id');
 
         // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::with('user')->whereIn('id', $following_id)->get();
 
-        return view('follows.followList', compact('posts'));
+        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+
+        $users = User::query()->whereIn('id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
+
+        return view('follows.followList', compact('posts', 'users'));
     }
 
     public function followerlist()
     {
-        $followerd_id = Auth::user()->follows()->pluck('following_id');
+        $followed_id = Auth::user()->followers()->pluck('following_id');
 
         // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::with('user')->whereIn('id', $followerd_id)->get();
+        $posts = Post::query()->whereIn('user_id', Auth::user()->followers()->pluck('following_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
 
-        return view('follows.followerList', compact('posts'));
+        $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
+
+        return view('follows.followerList', compact('posts', 'users'));
     }
 
     public function create()

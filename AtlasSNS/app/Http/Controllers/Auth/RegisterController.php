@@ -51,12 +51,12 @@ class RegisterController extends Controller
     // バリテーション
     protected function validator(array $data)
     {
-                              // ↓(検証する配列値(名前),検証ルール)
+        // ↓(検証する配列値(名前),検証ルール)
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|between:1,10|alpha_num',
-            'password-confirm' => 'required|'
+            'username' => 'required|string|between:2,12',
+            'mail' => 'required|string|email|between:5,40|unique:users',
+            'password' => 'required|string|between:8,20|alpha_num',
+            'password-confirm' => 'required|',
         ]);
         return $validator;
     }
@@ -81,8 +81,9 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
-    public function register(Request $request){
-        if($request->isMethod('post')){
+    public function register(Request $request)
+    {
+        if ($request->isMethod('post')) {
             // ddd($request->username);
 
             $data = $request->input();
@@ -90,10 +91,10 @@ class RegisterController extends Controller
 
             // バリデーションよびだし
             if ($validator->fails()) {
-            return redirect('/register')
-            ->withInput()
-            // ()内でerror送るよ
-            ->withErrors($validator);
+                return redirect('/register')
+                    ->withInput()
+                    // ()内でerror送るよ
+                    ->withErrors($validator);
             }
 
             // createメソッドが実行
@@ -109,8 +110,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function added(){
+    public function added()
+    {
         return view('auth.added');
-
     }
 }

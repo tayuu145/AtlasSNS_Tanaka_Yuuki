@@ -27,10 +27,10 @@
 <body>
     <header>
         <div id="head">
-            <h1><a href="/top"><img src="images/atlas.png"></a></h1>
-            <div id="">
-                <div>
-                    <p>{{Auth::user()->username}}さん<img src="images/icon1.png" width="25" height="25"></p>
+            <h1><a href="/top"><img src="images/atlas.png" width="100" height="40"></a></h1>
+            <div id="migiyose">
+                <div class="yokonarabi">
+                    <p>{{Auth::user()->username}}　さん</p>
 
                     <ul>
                         <li>
@@ -43,7 +43,9 @@
                             </ul>
                         </li>
                     </ul>
+                    <img src="{{ asset(Auth::user()->images) }}" class="icon-20">
                 </div>
+            </div>
     </header>
     <div id="row">
         <div id="container">
@@ -51,19 +53,17 @@
         </div>
         <div id="side-bar">
             <div id="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
-                <div>
-                    <p>フォロー数</p>
-                    <p>{{ Auth::user()->follows()->count() }}名</p>
+                <p class="p-top20">{{Auth::user()->username}}さんの</p>
+                <div class="p-top20">
+                    <p>フォロー数　　{{ Auth::user()->follows()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
-                    <p>フォロワー数</p>
-                    <p>{{ Auth::user()->followers()->count() }}名</p>
+                <p class="btn-l"><a href="/follow-list">フォローリスト</a></p>
+                <div class="p-top20">
+                    <p>フォロワー数　{{ Auth::user()->followers()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <p class="btn-l"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <p class="btn-s"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

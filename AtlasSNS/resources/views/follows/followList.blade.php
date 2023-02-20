@@ -5,16 +5,18 @@
 
 <div class="card-body">
   <div class="card-body">
-    <table>
+    <div class="yokonarabi senter-disp">
+
       <!-- 繰り返しフォローしている人のアイコンを表示させる　フォローしている人に限る処理はページ開く前のコントローラー側で -->
-      @foreach ($posts as $post)
+      <h2 class="font20">Follow List</h2>
+      @foreach ($users as $user)
       <div>
-        <p><a href="/userprofile"><img src="{{ $post->images }}" width="25" height="25"></a></p>
+        <p><a href="{{ route('userprofile', ['id' => $user->id]) }}"><img src="{{ asset($user->images) }}" width="40" height="40"></a></p>
       </div>
 
       @endforeach
-    </table>
-    <table class="table table-striped task-table">
+    </div>
+    <table class="table-eria">
       <!-- テーブルヘッダ -->
       <thead>
         <th>つぶやき一覧</th>
@@ -24,10 +26,9 @@
       <tbody>
         @foreach ($posts as $post)
         <tr>
-
           <!-- 投稿ID -->
           <td class="table-text">
-            <div><a href="{{ $post->user_id }}">{{ $post->user_id }}</a> </div>
+            <div><a href="{{ route('userprofile', ['id' => $post->user_id]) }}">{{ $post->user_id }}</a> </div>
           </td>
           <!-- 投稿詳細 -->
           <td class="table-text">
@@ -37,7 +38,8 @@
             <div>
               <p> </p>
             </div>
-          <td>
+          </td>
+
 
         </tr>
         @endforeach
