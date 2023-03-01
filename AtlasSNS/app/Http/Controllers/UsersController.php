@@ -33,8 +33,8 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,12',
             'mail' => 'required|string|email|between:5,40|unique:users',
-            'password' => 'required|string|between:8,20|alpha_num',
-            'password-comfirm' => 'required|',
+            'password' => 'required|string|between:8,20|alpha_num|confirmed',
+            'password_confirmation' => 'required|',
             'bio' => 'max:150',
             'icon' => 'image'
         ]);
@@ -93,6 +93,7 @@ class UsersController extends Controller
             $query = User::query();
 
             $query->where('username', 'LIKE', '%' . $search . '%');
+            $query->orderBy('created_at', 'desc')->get();
             $users = $query;
             $users = $query->get();
         } else {
@@ -105,8 +106,11 @@ class UsersController extends Controller
 
     public function userprofile($id)
     {
-        $users = User::where('id', $id)->first();
-        $posts = Post::where('user_id', $id)->get();
+        $users = User::where('id', $id)->get();
+        $posts = [
+            Post::where('user_id', $id)->get(),
+            User::where('id', $id)->get(),
+        ];
         return view('users.userprofile', compact('users', 'posts'));
     }
 }

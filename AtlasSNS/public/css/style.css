@@ -33,11 +33,11 @@ header {
 }
 
 #container {
-    flex: 0 0 80%;
+    flex: 0 0 83%;
 }
 
 #side-bar {
-    flex: 0 0 15%;
+    flex: 0 0 17%;
     border-left: 1px solid #727272;
 
 }
@@ -197,6 +197,7 @@ header {
     margin: 0 auto;
 }
 
+/* 共通 */
 .yokonarabi {
     display: flex;
     width: 300px;
@@ -204,6 +205,28 @@ header {
     /* margin-left: 1100px;
     margin-top: -10px; */
 
+}
+
+.magin-b20 {
+    margin-bottom: 20px;
+}
+
+.right {
+    margin: 0 0 0 auto;
+}
+
+.disp-flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#migiyose {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.white {
+    color: #fff;
 }
 
 .yokonarabi-search {
@@ -215,10 +238,7 @@ header {
 
 }
 
-#migiyose {
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 /* クリック領域 */
 .ac-parent {
@@ -240,8 +260,9 @@ header {
 }
 
 .content {
-    margin: 0 auto;
-    padding: 40px;
+    width: 50px;
+    text-align: end;
+    padding-right: 30px;
 }
 
 .modal {
@@ -403,6 +424,20 @@ tr {
     width: 100%;
 }
 
+.table-text {
+    width: 400px;
+
+}
+
+
+
+.table-icon {
+    width: 90px;
+    padding-left: 150px;
+    padding-top: 10px;
+
+}
+
 .edit {
     margin-left: 50px;
 }
@@ -477,4 +512,18 @@ tr {
 
 .userprofile-name {
     margin-left: -100px;
+}
+
+/* ヘッド */
+
+.head-title {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.head-content {
+    margin-top: -30px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 18px;
 }

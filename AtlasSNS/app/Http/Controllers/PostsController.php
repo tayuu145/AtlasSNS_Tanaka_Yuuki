@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Auth;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
@@ -25,7 +25,7 @@ class PostsController extends Controller
 
         // フォローしているユーザーのidを元に投稿内容を取得
 
-        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
 
         $users = User::query()->whereIn('id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
 
@@ -37,7 +37,7 @@ class PostsController extends Controller
         $followed_id = Auth::user()->followers()->pluck('following_id');
 
         // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::query()->whereIn('user_id', Auth::user()->followers()->pluck('following_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        $posts = Post::query()->whereIn('user_id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
 
         $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
 
@@ -52,6 +52,15 @@ class PostsController extends Controller
     // 投稿内容登録処理 <wakaranai> </wakaranai>
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'post' => 'required|string|between:1,200',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/top')
+                ->withInput()
+                ->withErrors($validator);
+        }
         // postsテーブルの情報を変数に格納
         $posts = new Post;
         // $posts->id = $request->id;

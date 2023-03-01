@@ -4,12 +4,13 @@
 
 <div id="clear">
   <!-- ↓セッションから表示させる -->
-  <p>{{ Session::get('UserName') }}さん</p>
-  <p>ようこそ！AtlasSNSへ！</p>
-  <p>ユーザー登録が完了しました。</p>
-  <p>早速ログインをしてみましょう。</p>
-
-  <p class="btn"><a href="/login">ログイン画面へ</a></p>
+  <p class="senter-a font-wei">{{ Session::get('UserName') }}さん</p>
+  <p class="senter-a font-wei">ようこそ！AtlasSNSへ</p>
+  <div class="add-setumei">
+    <p>ユーザー登録が完了しました。<br>
+      早速ログインをしてみましょう！</p>
+  </div>
+  <p class="add-b"><a href="/login">ログイン画面へ</a></p>
 </div>
 <!--  -->
 @endsection

@@ -26,16 +26,16 @@
         <tr>
 
           <!-- 投稿ID -->
-          <td class="table-text">
-            <div><a href="{{ route('userprofile', ['id' => $post->user_id]) }}">{{ $post->user_id }}</a> </div>
+          <td class="table-icon">
+            <div><a href="{{ route('userprofile', ['id' => $post->user_id]) }}"><img src="{{ asset($user->images) }}" width="45" height="45"></a> </div>
           </td>
           <!-- 投稿詳細 -->
           <td class="table-text">
             <div>{{ $post->post }}</div>
           </td>
           <td>
-            <div>
-              <p> </p>
+            <div class="content">
+              <p> {{$post->created_at}}</p>
             </div>
           <td>
 

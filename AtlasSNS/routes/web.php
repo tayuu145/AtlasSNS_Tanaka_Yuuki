@@ -58,7 +58,7 @@ Route::post('/newpost', 'PostsController@store')->name('posts.store');
 // 編集更新ボタン押した先
 Route::post('/posts/{id}/update', 'PostsController@update')->name('update');
 
-Route::delete('/posts/{id}/delete', 'PostsController@delete')->name('post.delete');
+Route::get('/posts/{id}/delete', 'PostsController@delete')->name('post.delete');
 
 // フォロー機能
 Route::post('/users/{id}/follow', 'FollowsController@follow')->name('follow');

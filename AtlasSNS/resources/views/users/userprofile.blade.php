@@ -50,7 +50,7 @@
 
                 <!-- 投稿ID -->
                 <td class="table-text">
-                  <div><a href="">{{ $post->user_id }}</a> </div>
+                  <div><a href=""><img src="{{ asset($post->images) }}" width="45" height="45"></a> </div>
                 </td>
                 <!-- 投稿詳細 -->
                 <td class="table-text">

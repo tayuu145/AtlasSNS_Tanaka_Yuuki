@@ -24,14 +24,14 @@
 {{ Form::text('mail',null,['class' => 'input']) }}
 
 {{ Form::label('password') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+{{ Form::password('password',['class' => 'input']) }}
 
 {{ Form::label('password-confirm') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::password('password_confirmation',['class' => 'input']) }}
 
-{{ Form::submit('登録',['class' => 'login-b']) }}
+{{ Form::submit('REGISTER',['class' => 'login-b']) }}
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<p class="senter-a top-m20px"><a href="/login">ログイン画面へ戻る</a></p>
 
 {!! Form::close() !!}
 

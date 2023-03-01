@@ -27,19 +27,18 @@
 <body>
     <header>
         <div id="head">
-            <h1><a href="/top"><img src="images/atlas.png" width="100" height="40"></a></h1>
-            <div id="migiyose">
+            <h1 class="head-title"><a href="/top"><img src="images/atlas.png" width="100" height="40"></a></h1>
+            <div id="migiyose" class="head-content">
                 <div class="yokonarabi">
-                    <p>{{Auth::user()->username}}　さん</p>
+                    <p class="white">{{Auth::user()->username}}　さん</p>
 
                     <ul>
                         <li>
-                            <p><a class="syncer-acdn" data-target="syncer-acdn-01">メニュー</a></p>
+                            <p><a class="syncer-acdn" data-target="syncer-acdn-01">V</a></p>
                             <ul id="syncer-acdn-01">
                                 <li><a href="/top">ホーム</a></li>
                                 <li><a href="/profile">プロフィール</a></li>
                                 <li><a href="/logout">ログアウト</a></li>
-                                <li><a href="/search">検索</a></li>
                             </ul>
                         </li>
                     </ul>
