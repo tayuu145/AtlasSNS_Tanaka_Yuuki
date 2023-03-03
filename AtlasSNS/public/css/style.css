@@ -207,6 +207,14 @@ header {
 
 }
 
+.magintop50 {
+    margin-top: 50px;
+}
+
+.magintop10 {
+    margin-top: 10px;
+}
+
 .magin-b20 {
     margin-bottom: 20px;
 }
@@ -220,6 +228,10 @@ header {
     justify-content: flex-end;
 }
 
+.disp-flexyoko {
+    display: flex;
+}
+
 #migiyose {
     display: flex;
     justify-content: flex-end;
@@ -228,6 +240,8 @@ header {
 .white {
     color: #fff;
 }
+
+
 
 .yokonarabi-search {
     display: flex;
@@ -260,9 +274,10 @@ header {
 }
 
 .content {
-    width: 50px;
     text-align: end;
     padding-right: 30px;
+    vertical-align: top;
+    padding-top: 10px;
 }
 
 .modal {
@@ -425,8 +440,10 @@ tr {
 }
 
 .table-text {
-    width: 400px;
-
+    vertical-align: top;
+    padding-top: 19px;
+    padding-left: 15px;
+    width: 100px;
 }
 
 
@@ -434,7 +451,8 @@ tr {
 .table-icon {
     width: 90px;
     padding-left: 150px;
-    padding-top: 10px;
+    margin-top: 80px;
+    padding-top: 15px;
 
 }
 

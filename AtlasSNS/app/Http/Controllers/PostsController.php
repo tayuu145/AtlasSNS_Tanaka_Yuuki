@@ -13,7 +13,7 @@ class PostsController extends Controller
     //
     public function index()
     {
-        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        $posts = Post::with("user")->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
         $users = User::get();
 
         return view('posts.index', compact('posts', 'users'));
@@ -25,7 +25,7 @@ class PostsController extends Controller
 
         // フォローしているユーザーのidを元に投稿内容を取得
 
-        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
+        $posts = Post::with("user")->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
 
         $users = User::query()->whereIn('id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
 
@@ -37,7 +37,7 @@ class PostsController extends Controller
         $followed_id = Auth::user()->followers()->pluck('following_id');
 
         // フォローしているユーザーのidを元に投稿内容を取得
-        $posts = Post::query()->whereIn('user_id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
+        $posts = Post::with("user")->whereIn('user_id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
 
         $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
 

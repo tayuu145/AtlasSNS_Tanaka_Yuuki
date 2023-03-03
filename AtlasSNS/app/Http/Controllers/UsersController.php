@@ -107,10 +107,7 @@ class UsersController extends Controller
     public function userprofile($id)
     {
         $users = User::where('id', $id)->get();
-        $posts = [
-            Post::where('user_id', $id)->get(),
-            User::where('id', $id)->get(),
-        ];
+        $posts = Post::with("user")->where('user_id', $id)->get();
         return view('users.userprofile', compact('users', 'posts'));
     }
 }

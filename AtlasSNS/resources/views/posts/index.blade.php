@@ -41,11 +41,15 @@
           <div class="post-box">
             <!-- 投稿ID -->
             <td class="table-icon">
-              <div><a href="{{ $post->user_id }}">{{ $post->user_id }}</a> </div>
+              <div><a href="{{ route('userprofile', ['id' => $post->user_id ]) }}"><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
+
             </td>
             <!-- 投稿詳細 -->
             <td class="table-text">
-              <div>{{ $post->post }}</div>
+              <div>
+                <p>{{$post->user->username}}</p>
+              </div>
+              <div class="magintop10">{{ $post->post }}</div>
             </td>
             <td class="content">
               <p class="magin-b20">{{$post->created_at}}</p>

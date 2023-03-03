@@ -27,17 +27,21 @@
 
           <!-- 投稿ID -->
           <td class="table-icon">
-            <div><a href="{{ route('userprofile', ['id' => $post->user_id]) }}"><img src="{{ asset($user->images) }}" width="45" height="45"></a> </div>
+            <div><a href="{{ route('userprofile', ['id' => $post->user->id]) }}"><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
+
           </td>
           <!-- 投稿詳細 -->
           <td class="table-text">
-            <div>{{ $post->post }}</div>
+            <div>
+              <p>{{$post->user->username}}</p>
+            </div>
+            <div class="magintop10">{{ $post->post }}</div>
           </td>
-          <td>
-            <div class="content">
+          <td class="content">
+            <div>
               <p> {{$post->created_at}}</p>
             </div>
-          <td>
+          </td>
 
         </tr>
         @endforeach

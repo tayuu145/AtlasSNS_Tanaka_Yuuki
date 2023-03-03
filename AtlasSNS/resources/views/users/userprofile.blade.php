@@ -13,8 +13,8 @@
           <div class="userprofile">
             <p><img src="{{ asset($users->images) }}" class="icon"></p>
             <div class="userprofile-name">
-              <p class="p-magi30">name:　　　 {{$users->username}}</p>
-              <p class="p-magi30">　bio: 　　{{$users->bio}}</p>
+              <p class="p-magi30">name:　　　 {{$posts->user->username}}</p>
+              <p class="p-magi30">　bio: 　　{{$posts->user->bio}}</p>
             </div>
             @if (auth()->user()->isFollowed($users->id))
             @endif
@@ -50,7 +50,7 @@
 
                 <!-- 投稿ID -->
                 <td class="table-text">
-                  <div><a href=""><img src="{{ asset($post->images) }}" width="45" height="45"></a> </div>
+                  <div><a href=""><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
                 </td>
                 <!-- 投稿詳細 -->
                 <td class="table-text">
