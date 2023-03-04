@@ -215,6 +215,10 @@ header {
     margin-top: 10px;
 }
 
+.magintop30 {
+    margin-top: 30px;
+}
+
 .magin-b20 {
     margin-bottom: 20px;
 }
@@ -252,7 +256,13 @@ header {
 
 }
 
+.width-name {
+    width: 500px;
+}
 
+.maru {
+    border-radius: 50px;
+}
 
 /* クリック領域 */
 .ac-parent {
@@ -310,7 +320,7 @@ header {
 }
 
 .post-box {
-    border-bottom: solid #333;
+    border-bottom: solid #d3d3d3;
 }
 
 .icon {
@@ -430,8 +440,8 @@ button {
 }
 
 tr {
-    border-bottom: solid #333;
-    border-width: thin;
+    border-bottom: solid #d3d3d3;
+    border-width: 2.0px;
     width: 100%;
 }
 
@@ -465,6 +475,12 @@ tr {
     font-size: 30px;
 }
 
+.saerch-b {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
 .margin10 {
     margin-bottom: 15px;
     margin-top: 15px;
@@ -490,11 +506,12 @@ tr {
 }
 
 .form-control {
-    border-radius: 10px;
-    width: 280px;
+    border-radius: 6px;
+    width: 340px;
     height: 50px;
     margin-bottom: 15px;
     font-size: 20px;
+    margin-right: 15px;
 }
 
 .btn-f {

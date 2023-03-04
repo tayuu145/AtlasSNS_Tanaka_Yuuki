@@ -11,7 +11,7 @@
       <h2 class="font20">Follow List</h2>
       @foreach ($users as $user)
       <div>
-        <p><a href="{{ route('userprofile', ['id' => $user->id]) }}"><img src="{{ asset($user->images) }}" width="40" height="40"></a></p>
+        <p><a href="{{ route('userprofile', ['id' => $user->id]) }}"><img src="{{ asset($user->images) }}" class="maru" width="45" height="45"></a></p>
       </div>
 
       @endforeach
@@ -19,30 +19,32 @@
     <table class="table-eria">
       <!-- テーブルヘッダ -->
       <thead>
-        <th>つぶやき一覧</th>
+        <th></th>
         <th> </th>
       </thead>
       <!-- テーブル本体 -->
       <tbody>
         @foreach ($posts as $post)
         <tr>
-          <!-- 投稿ID -->
-          <td class="table-icon">
-            <div><a href="{{ route('userprofile', ['id' => $post->user->id]) }}"><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
+          <div class="post-box">
+            <!-- 投稿ID -->
+            <td class="table-icon">
+              <div><a href="{{ route('userprofile', ['id' => $post->user->id]) }}"><img src="{{ asset($post->user->images) }}" class="maru" width="45" height="45"></a> </div>
 
-          </td>
-          <!-- 投稿詳細 -->
-          <td class="table-text">
-            <div>
-              <p>{{$post->user->username}}</p>
-            </div>
-            <div class="magintop10">{{ $post->post }}</div>
-          </td>
-          <td class="content">
-            <div>
-              <p> {{$post->created_at}}</p>
-            </div>
-          </td>
+            </td>
+            <!-- 投稿詳細 -->
+            <td class="table-text">
+              <div>
+                <p>{{$post->user->username}}</p>
+              </div>
+              <div class="magintop10">{{ $post->post }}</div>
+            </td>
+            <td class="content">
+              <div>
+                <p> {{$post->created_at}}</p>
+              </div>
+            </td>
+          </div>
 
 
         </tr>

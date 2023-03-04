@@ -34,7 +34,7 @@
 
                     <ul>
                         <li>
-                            <p><a class="syncer-acdn" data-target="syncer-acdn-01">V</a></p>
+                            <p><a class="syncer-acdn" data-target="syncer-acdn-01">^</a></p>
                             <ul id="syncer-acdn-01">
                                 <li><a href="/top">ホーム</a></li>
                                 <li><a href="/profile">プロフィール</a></li>
@@ -42,7 +42,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <img src="{{ asset(Auth::user()->images) }}" class="icon-20">
+                    <img src="{{ asset(Auth::user()->images) }}" class="icon-20 maru">
                 </div>
             </div>
     </header>

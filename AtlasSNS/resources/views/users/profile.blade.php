@@ -22,7 +22,7 @@
           <!-- 重要な箇所ここから -->
           <form action="/profil_edit" method="POST" enctype="multipart/form-data">
             @csrf
-            <img src="{{ asset(Auth::user()->images) }}" class="icon-profile">
+            <img src="{{ asset(Auth::user()->images) }}" class="icon-profile maru">
             <input type="hidden" name="id" value="{{Auth::user()->id}}" />
             <div class="profile">
               <p>user name　　</p>

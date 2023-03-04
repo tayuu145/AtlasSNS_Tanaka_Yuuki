@@ -19,7 +19,7 @@
     <div>
       <!-- かくして、ログインユーザー名おくるよ -->
       <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
-      <img src="{{ asset(Auth::user()->images) }}" class="post-image" width="45" height="45">
+      <img src="{{ asset(Auth::user()->images) }}" class="post-image maru" width="45" height="45">
     </div>
     <div>
       <textarea class="text-eria" name="post" placeholder="投稿内容を入力してください。"></textarea>
@@ -41,7 +41,7 @@
           <div class="post-box">
             <!-- 投稿ID -->
             <td class="table-icon">
-              <div><a href="{{ route('userprofile', ['id' => $post->user_id ]) }}"><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
+              <div><a href="{{ route('userprofile', ['id' => $post->user_id ]) }}"><img src="{{ asset($post->user->images) }}" class="maru" width="45" height="45"></a> </div>
 
             </td>
             <!-- 投稿詳細 -->
