@@ -5,78 +5,81 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">ユーザ編集</div>
+        <div class="card-header"></div>
         <div class="card-body">
           <!-- 重要な箇所ここから -->
 
           @csrf
           <div class="userprofile">
-            <p><img src="{{ asset($users->images) }}" class="icon"></p>
+            <p><img src="{{ asset($users->images) }}" class="icon magintop20 maru"></p>
             <div class="userprofile-name">
-              <p class="p-magi30">name:　　　 {{$posts->user->username}}</p>
-              <p class="p-magi30">　bio: 　　{{$posts->user->bio}}</p>
+              <p class="p-magi30">name 　　　　　{{$users->username}}</p>
+              <p class="p-magi30">bio　　　　　　{{$users->bio}}</p>
             </div>
             @if (auth()->user()->isFollowed($users->id))
             @endif
-            <div class="d-flex justify-content-end flex-grow-1">
+            <div class="userprofile-b">
               @if (Auth::user()->isFollowing($users->id))
               <form action="{{ route('unfollow', ['id' => $users->id]) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
 
-                <button type="submit" class="btn btn-danger">フォロー解除</button>
+                <button type="submit" class="btn-f btn-follow">フォロー解除</button>
               </form>
               @else
               <form action="{{ route('follow', ['id' => $users->id]) }}" method="POST">
                 {{ csrf_field() }}
 
-                <button type="submit" class="btn btn-primary">フォローする</button>
+                <button type="submit" class="btn-f btn-followed">フォローする</button>
               </form>
               @endif
             </div>
           </div>
 
 
-          <table class="table table-striped task-table">
+          <table class="table-eria">
             <!-- テーブルヘッダ -->
             <thead>
-              <th>つぶやき一覧</th>
+              <th></th>
               <th> </th>
             </thead>
             <!-- テーブル本体 -->
             <tbody>
-              @foreach ($posts as $post)
-              <tr>
+              <div class="post-box">
+                @foreach ($posts as $post)
+                <tr>
 
-                <!-- 投稿ID -->
-                <td class="table-text">
-                  <div><a href=""><img src="{{ asset($post->user->images) }}" width="45" height="45"></a> </div>
-                </td>
-                <!-- 投稿詳細 -->
-                <td class="table-text">
-                  <div>{{ $post->post }}</div>
-                </td>
-                <td>
-                  <div>
-                    <p> </p>
-                  </div>
-                <td>
+                  <!-- 投稿ID -->
+                  <td class="table-icon">
+                    <div><a href=""><img src="{{ asset($post->user->images) }}" class="maru" width="45" height="45"></a> </div>
+                  </td>
 
-              </tr>
-              @endforeach
+                  <!-- 投稿詳細 -->
+                  <td class="table-text">
+                    <div>
+                      <p>{{$post->user->username}}</p>
+                    </div>
+                    <div class="magintop10">{{ $post->post }}</div>
+                  </td>
+                  <td class="content">
+                    <div>
+                      <p> {{$post->created_at}}</p>
+                    </div>
+                  </td>
 
+                </tr>
+                @endforeach
+
+              </div>
+
+            </tbody>
+          </table>
+          <br />
+          <!-- 重要な箇所ここまで -->
         </div>
-        </td>
-
-        </tbody>
-        </table>
-        <br />
-        <input type="submit" value="更新" />
-        <!-- 重要な箇所ここまで -->
       </div>
     </div>
   </div>
-</div>
 </div>
 
 @endsection

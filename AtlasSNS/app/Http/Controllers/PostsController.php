@@ -15,8 +15,9 @@ class PostsController extends Controller
     {
         $posts = Post::with("user")->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
         $users = User::get();
+        $user_id = Auth::id();
 
-        return view('posts.index', compact('posts', 'users'));
+        return view('posts.index', compact('posts', 'users', 'user_id'));
     }
 
     public function followlist()

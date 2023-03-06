@@ -53,6 +53,7 @@
             </td>
             <td class="content">
               <p class="magin-b20">{{$post->created_at}}</p>
+              @if ($user_id == $post->user_id)
               <div class="disp-flex">
                 <div>
                   <!-- 投稿の編集ボタン -->
@@ -66,9 +67,9 @@
                   <div class="modal__content">
                     <!-- {/* 　　↓ここで飛ばしたいリンクに　　nameや書いてないところをかく */} -->
                     <form action="{{ route('update', ['id' => $post->id]) }}" method="POST">
-                      <textarea name="update-text" class="modal_post"></textarea>
+                      <textarea name="update-text" class="modal_post"></textarea><br>
                       <input type="hidden" name="update-id" class="modal_id" value="">
-                      <input type="submit" value="更新">
+                      <input type="image" src="images/edit.png" width="40" height="40" value="更新">
                       {{ csrf_field() }}
                     </form>
                     <a class="js-modal-close" href="">閉じる</a>
@@ -79,6 +80,7 @@
 
                 </form>
               </div>
+              @endif
             </td>
             <!-- <td class="content">
 
