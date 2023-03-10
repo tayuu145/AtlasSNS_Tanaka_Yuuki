@@ -27,12 +27,44 @@
 <body>
     <header>
         <div id="head">
-            <h1 class="head-title"><a href="/top"><img src="images/atlas.png" width="100" height="40"></a></h1>
+            <h1 class="head-title"><a href="/top"><img src="{{ asset('images/atlas.png') }}" width="100" height="40"></a></h1>
             <div id="migiyose" class="head-content">
                 <div class="yokonarabi">
                     <p class="white">{{Auth::user()->username}}　さん</p>
 
-                    <ul>
+                    <nav class="g-navi">
+                        <div class="container nav-wrapper">
+                            <!-- グローバルナビゲージョン -->
+                            <ul>
+
+                                <li class="nav-item"><a href="/top" class="a-b">
+                                        <div class="nv-cot">HOME</div>
+                                    </a></li>
+
+
+                                <li class="nav-item"><a href="/profile" class="a-b">
+                                        <div class="nv-cot">プロフィール編集</div>
+                                    </a></li>
+
+
+                                <li class="nav-item"><a href="/logout" class="a-b">
+                                        <div class="nv-cot-b">ログアウト</div>
+                                    </a></li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- SPグローバルナビゲージョン -->
+                    <nav class="g-navi-sp">
+
+                        <!-- ハンバーガーメニュー -->
+                        <div class="menu-trigger">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
+
+                    <!-- <ul>
                         <li>
                             <p><a class="syncer-acdn" data-target="syncer-acdn-01">^</a></p>
                             <ul id="syncer-acdn-01">
@@ -41,7 +73,7 @@
                                 <li><a href="/logout">ログアウト</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
                     <img src="{{ asset(Auth::user()->images) }}" class="icon-20 maru">
                 </div>
             </div>
@@ -56,13 +88,13 @@
                 <div class="p-top20">
                     <p>フォロー数　　{{ Auth::user()->follows()->count() }}名</p>
                 </div>
-                <p class="btn-l"><a href="/follow-list">フォローリスト</a></p>
+                <p class="btn-l"><a href="/follow-list" class="a-w">フォローリスト</a></p>
                 <div class="p-top20">
                     <p>フォロワー数　{{ Auth::user()->followers()->count() }}名</p>
                 </div>
-                <p class="btn-l"><a href="/follower-list">フォロワーリスト</a></p>
+                <p class="btn-l"><a href="/follower-list" class="a-w">フォロワーリスト</a></p>
             </div>
-            <p class="btn-s"><a href="/search">ユーザー検索</a></p>
+            <p class="btn-s"><a href="/search" class="a-w">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

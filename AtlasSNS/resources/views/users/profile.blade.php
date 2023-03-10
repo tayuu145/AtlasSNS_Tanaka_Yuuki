@@ -19,34 +19,37 @@
       <div class="card">
         <div class="card-header"></div>
         <div class="card-body">
+          <img src="{{ asset(Auth::user()->images) }}" class="icon-profile maru">
           <!-- 重要な箇所ここから -->
-          <form action="/profil_edit" method="POST" enctype="multipart/form-data">
+          <form action="/profil_edit" method="POST" enctype="multipart/form-data" class="profile-form">
             @csrf
-            <img src="{{ asset(Auth::user()->images) }}" class="icon-profile maru">
+
             <input type="hidden" name="id" value="{{Auth::user()->id}}" />
             <div class="profile">
-              <p>user name　　</p>
+              <p class="font24">user name　　</p>
               <input type="text" class="profile-box" name="name" value="{{Auth::user()->username}}" />
             </div>
             <div class="profile">
-              <p>mail adress　　</p>
+              <p class="font24">mail adress　　</p>
               <input type="text" class="profile-box" name="mail" value="{{Auth::user()->mail}}" />
             </div>
             <div class="profile">
-              <p>password　　</p>
+              <p class="font24">password　　</p>
               <input type="password" class="profile-box" name="password" value="" />
             </div>
             <div class="profile">
-              <p>password comfirm　　</p>
+              <p class="font24">password comfirm　　</p>
               <input type="password" class="profile-box" name="password-comfirm" value="" />
             </div>
             <div class="profile">
-              <p>bio　　</p>
+              <p class="font24">bio　　</p>
               <input type="text" class="profile-box" name="bio" value="{{Auth::user()->bio}}" />
             </div>
             <div class="profile">
-              <p>icon　　</p>
-              <input type="file" class="profile-box" name="icon" value="{{Auth::user()->images}}" />
+              <p class="font24">icon image　　</p>
+              <label>
+                <input type="file" class="profile-box file" name="icon" value="{{Auth::user()->images}}" />ファイルを選択
+              </label>
             </div>
 
             <br />

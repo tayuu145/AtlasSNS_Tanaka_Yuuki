@@ -13,18 +13,20 @@
 </div>
 @endif
 
-<div class="post-in">
+<div>
   <form action="/newpost" method="POST" class="toukou">
     @csrf
-    <div>
-      <!-- かくして、ログインユーザー名おくるよ -->
-      <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
-      <img src="{{ asset(Auth::user()->images) }}" class="post-image maru" width="45" height="45">
+    <div class="post-in">
+      <div>
+        <!-- かくして、ログインユーザー名おくるよ -->
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
+        <img src="{{ asset(Auth::user()->images) }}" class="post-image maru" width="45" height="45">
+      </div>
+      <div>
+        <textarea class="text-eria" name="post" placeholder="投稿内容を入力してください。"></textarea>
+      </div>
+      <button class="button-post"><img src="images\post.png" class="post-btn"></button>
     </div>
-    <div>
-      <textarea class="text-eria" name="post" placeholder="投稿内容を入力してください。"></textarea>
-    </div>
-    <button class="button-post"><img src="images\post.png" class="post-btn"></button>
   </form>
 </div>
 <!-- 全ての投稿リスト -->

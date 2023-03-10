@@ -236,6 +236,10 @@ header {
     margin-bottom: 20px;
 }
 
+.font24 {
+    font-size: 24px;
+}
+
 .right {
     margin: 0 0 0 auto;
 }
@@ -352,9 +356,19 @@ header {
 .icon-profile {
     width: 50px;
     height: 50px;
-    margin-bottom: -80px;
-    margin-left: 350px;
+    margin-top: 60px;
+    margin-left: 160px;
 }
+
+.profile-form {
+    margin-top: -90px;
+    margin-left: 280px;
+    width: 700px;
+
+
+}
+
+
 
 .submit-profile {
     background-color: #f00;
@@ -377,10 +391,10 @@ header {
 
 .profile {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 500px;
+    justify-content: space-between;
     margin-top: 50px;
     margin-bottom: 15px;
+    vertical-align: middle;
 }
 
 .btn-l {
@@ -405,7 +419,7 @@ header {
     margin-top: 20px;
 }
 
-a {
+.a-w {
     color: aliceblue;
 }
 
@@ -415,8 +429,11 @@ a {
 
 /* 投稿入力 */
 .post-in {
-    width: 50%;
-    margin-left: 100px;
+    width: 83%;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 150px;
+    margin-top: 15px;
 }
 
 .post-image {
@@ -427,11 +444,13 @@ a {
 }
 
 .text-eria {
-    width: 800px;
+    width: 700px;
     height: 80px;
     border: none;
     resize: none;
     font-size: 20px;
+    margin-left: 10px;
+    margin-top: 15px;
 }
 
 ::placeholder {
@@ -441,6 +460,7 @@ a {
 .post-btn {
     width: 50px;
     height: 50px;
+    margin-top: 50px;
 }
 
 button {
@@ -449,8 +469,8 @@ button {
 }
 
 .button-post {
-    margin-left: 830px;
-    margin-top: -40px;
+    margin-left: 30px;
+
     border: none;
 }
 
@@ -511,13 +531,35 @@ tr {
     height: 160px;
     padding: 60px;
     width: 100%;
-    border-bottom: solid #333;
+    border-bottom: solid #d3d3d3;
+    border-width: 9px;
 }
 
 .profile-box {
-    width: 300px;
+    width: 400px;
     height: 40px;
     margin-bottom: 15px;
+    background-color: #f5f5f5;
+    border-color: #d3d3d3;
+    font-size: 24px;
+}
+
+
+label {
+    padding: 10px 40px;
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #d3d3d3;
+    border: solid #d3d3d3;
+    cursor: pointer;
+    width: 400px;
+    height: 90px;
+    padding-top: 37px;
+    padding-left: 90px;
+}
+
+.file {
+    display: none;
 }
 
 .submit-search {
@@ -586,4 +628,133 @@ tr {
     padding-bottom: 20px;
     font-weight: bold;
     font-size: 18px;
+}
+
+/* sinnハンバーガ */
+.g-navi {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    transform: translateY(-100%);
+    transition: .5s ease-in-out;
+    height: 100vh;
+    width: 20%;
+}
+
+.g-navi ul {
+    display: block;
+}
+
+.g-navi.active {
+    transform: translateY(7.5%);
+    transition: .5s ease-in-out;
+}
+
+.menu-trigger {
+    position: relative;
+    width: 30px;
+    height: 42px;
+    cursor: pointer;
+}
+
+/* ⑥ */
+.menu-trigger span {
+    display: block;
+    position: absolute;
+    width: 20px;
+    border-bottom: solid 3px #fff;
+    border-radius: 3px;
+    transition: .35s ease-in-out;
+}
+
+/* ⑦ */
+.menu-trigger span:nth-child(1) {
+    top: 6px;
+    transform: rotate(-60deg);
+}
+
+.menu-trigger span:nth-child(2) {
+    top: 6px;
+    right: 19px;
+    transform: rotate(60deg);
+}
+
+
+
+/* ここまで記述済み */
+/* 1番上のspan要素をマイナス45度方向に回す */
+.menu-trigger.active span:nth-child(1) {
+    top: 6px;
+    transform: rotate(60deg);
+}
+
+/* 2番目と3番目のspan要素を45度方向に回す */
+.menu-trigger.active span:nth-child(2) {
+    top: 6px;
+    transform: rotate(-60deg);
+}
+
+.container {
+    max-width: 1024px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container-a {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nv-cot {
+    border: solid #186AC9;
+    border-bottom: none;
+    background-color: #fff;
+    height: 90px;
+    padding-top: 35px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 25px;
+}
+
+.nv-cot-b {
+    border: solid #186AC9;
+    background-color: #fff;
+    height: 90px;
+    padding-top: 35px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 25px;
+}
+
+.g-navi ul li a:hover {
+
+    /* ① */
+    background-color: #186AC9;
+    /* ① */
+
+}
+
+.nav-item {
+    color: #333;
+}
+
+.a-b {
+    color: #a9a9a9;
+    font-weight: 150;
+}
+
+.a-b:hover {
+    color: #fff;
+    background-color: #00008b;
+}
+
+.nv-cot:hover {
+    color: #fff;
+    background-color: #00008b;
+}
+
+.nv-cot-b:hover {
+    color: #fff;
+    background-color: #00008b;
 }
